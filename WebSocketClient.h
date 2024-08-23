@@ -22,6 +22,8 @@ public:
 
 	void setAuthorizationHeader(String header);
 
+	WiFiClient *client;
+
 private:
 	int timedRead();
 
@@ -30,8 +32,6 @@ private:
     void write(const char *str);
 
 	String generateKey();
-
-	WiFiClient *client;
 
 	String authorizationHeader = "";
 
