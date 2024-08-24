@@ -1,4 +1,4 @@
-//#define DEBUG
+#define DEBUG
 
 #include "WebSocketClient.h"
 #include <WiFiClientSecure.h>
@@ -102,15 +102,18 @@ bool WebSocketClient::connect(String host, String path, int port) {
 		else if (s.indexOf(":") != -1) {
 			auto col = s.indexOf(":");
 			auto key = s.substring(0, col);
-			auto value = s.substring(col + 2, s.length() - 1);
+			key.toLowerCase();
 
-			if (key == "Connection" && (value == "Upgrade" || value == "upgrade"))
+			auto value = s.substring(col + 2, s.length() - 1);
+			value.toLowerCase();
+
+			if (key == "connection" && value == "upgrade")
 				isUpgrade = true;
 
-			else if (key == "Sec-WebSocket-Accept")
+			else if (key == "sec-websocket-accept")
 				hasAcceptedKey = true;
 
-			else if (key == "Upgrade" && value == "websocket")
+			else if (key == "upgrade" && value == "websocket")
 				isWebsocket = true;
 		}
 
