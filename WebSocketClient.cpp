@@ -27,8 +27,8 @@ WebSocketClient::~WebSocketClient() {
 	delete this->client;
 }
 
-void WebSocketClient::setAuthorizationHeader(String header) {
-	this->authorizationHeader = header;
+void WebSocketClient::addHeader(String header, String value) {
+	additionalHeaders += header + ": " + value + "\r\n";
 }
 
 String WebSocketClient::generateKey() {
@@ -66,8 +66,8 @@ bool WebSocketClient::connect(String host, String path, int port) {
 			"Sec-WebSocket-Version: 13\r\n"
 			"Sec-WebSocket-Key: " + generateKey() + "==\r\n";
 
-	if (authorizationHeader != "")
-		handshake += "Authorization: " + authorizationHeader + "\r\n";
+	if (additionalHeaders != "")
+		handshake += additionalHeaders;
 
 	handshake += "\r\n";
 

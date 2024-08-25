@@ -20,7 +20,7 @@ public:
 
 	bool getMessage(String& message);
 
-	void setAuthorizationHeader(String header);
+	void addHeader(String header, String value);
 
 	WiFiClient *client;
 
@@ -33,7 +33,7 @@ private:
 
 	String generateKey();
 
-	String authorizationHeader = "";
+	String additionalHeaders = "";
 
     bool websocketEstablished = false;
 
