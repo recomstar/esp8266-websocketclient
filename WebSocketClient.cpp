@@ -95,6 +95,7 @@ bool WebSocketClient::connect(String host, String path, int port) {
 				hasCorrectStatus = true;
 			else {
 				DEBUG_WS("[WS] wrong status: " + status);
+        		this->disconnect();
 				return false;
 			}
 		}
