@@ -1,5 +1,3 @@
-#define DEBUG
-
 #include "WebSocketClient.h"
 #include <WiFiClientSecure.h>
 
