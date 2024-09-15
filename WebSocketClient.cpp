@@ -8,7 +8,7 @@
 #define WS_MASK           0x80
 #define WS_SIZE16         126
 
-#ifdef DEBUG
+#ifdef DEBUG_WEB_SOCKET
 #define DEBUG_WS Serial.println
 #else
 #define DEBUG_WS(MSG)
