@@ -145,6 +145,7 @@ void WebSocketClient::disconnect() {
 
 void WebSocketClient::send(const String& str) {
 	DEBUG_WS("[WS] sending: " + str);
+	long start = millis();
 	if (!client->connected()) {
 		DEBUG_WS("[WS] not connected...");
 		return;
@@ -179,6 +180,8 @@ void WebSocketClient::send(const String& str) {
 	for (int i = 0; i < size; ++i) {
 		write(str[i] ^ mask[i % 4]);
 	}
+
+	DEBUG_WS("[WS] sent message " + String(millis() - start) + "ms");
 }
 
 int WebSocketClient::timedRead() {
