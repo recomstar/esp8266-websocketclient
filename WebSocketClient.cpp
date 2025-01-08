@@ -53,8 +53,9 @@ void WebSocketClient::write(const char *data) {
 }
 
 bool WebSocketClient::connect(String host, String path, int port) {
-    if (!client->connect(host.c_str(), port))
-        return false;
+    if (!client->connect(host.c_str(), port)) {
+		return false;
+	}
 
 	// send handshake
 	String handshake = "GET " + path + " HTTP/1.1\r\n"
